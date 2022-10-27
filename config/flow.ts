@@ -3,14 +3,18 @@ export enum PageName {
   Intro = 'intro',
   Email = 'email',
   ChooseId = 'choose-id',
-  DriversLicenseChooseState = 'drivers-license-state',
-  DriversLicenseNumber = 'drivers-license-license-number',
-  DriversLicenseName = 'drivers-license-name',
-  DateOfBirth = 'date-of-birth',
-  Address = 'address',
-  Confirm = 'confirm-kyc',
-//   Bank = 'bank-account',
-//   DirectDebit = 'direct-debit',
+  SelectDriversLicenseState = 'select-drivers-license-state',
+  AddDriversLicenseNumber = 'add-drivers-license-number',
+  AddDriversLicenseName = 'add-drivers-license-name',
+  AddDateOfBirth = 'add-date-of-birth',
+  AddAddress = 'AddAddress',
+  ConfirmIdData = 'confirm-id-data',
+  AddBank = 'add-bank',
+  SelectBankAccount = 'select-bank-account',
+  AddDirectDebit = 'direct-debit',
+  TermsAndConditions = 'terms-and-conditions',
+  PaymentConfirmationPostSignUp = 'payment-confirmation-post-sign-up',
+  PaymentSuccess = 'payment-success',
 }
 
 export const registrationFlow = {
@@ -22,53 +26,89 @@ export const registrationFlow = {
   },
   [PageName.Email]: {
     href: '/register/email',
-    progressValue: 10,
+    progressValue: 8,
     previousPage: null,
     nextPage: [PageName.ChooseId]
   },
   [PageName.ChooseId]: {
     href: '/register/choose-id',
-    progressValue: 20,
+    progressValue: 16,
     previousPage: [PageName.Email],
-    nextPage: [PageName.DriversLicenseChooseState]
+    nextPage: [PageName.SelectDriversLicenseState]
   },
-  [PageName.DriversLicenseChooseState]: {
+  [PageName.SelectDriversLicenseState]: {
     href: '/register/drivers-license',
-    progressValue: 30,
+    progressValue: 24,
     previousPage: [PageName.ChooseId],
-    nextPage: [PageName.DriversLicenseNumber]
+    nextPage: [PageName.AddDriversLicenseNumber]
   },
-  [PageName.DriversLicenseNumber]: {
+  [PageName.AddDriversLicenseNumber]: {
     href: '/register/drivers-license/[state]',
-    progressValue: 40,
-    previousPage: [PageName.DriversLicenseChooseState],
-    nextPage: [PageName.DriversLicenseName]
+    progressValue: 32,
+    previousPage: [PageName.SelectDriversLicenseState],
+    nextPage: [PageName.AddDriversLicenseName]
   },
-  [PageName.DriversLicenseName]: {
+  [PageName.AddDriversLicenseName]: {
     href: '/register/drivers-license/[state]/name',
-    progressValue: 50,
-    previousPage: [PageName.DriversLicenseNumber],
-    nextPage: [PageName.DateOfBirth]
+    progressValue: 40,
+    previousPage: [PageName.AddDriversLicenseNumber],
+    nextPage: [PageName.AddDateOfBirth]
   },
-  [PageName.DateOfBirth]: {
+  [PageName.AddDateOfBirth]: {
     href: '/register/date-of-birth',
-    progressValue: 60,
-    previousPage: [PageName.DriversLicenseName],
-    nextPage: [PageName.Address]
+    progressValue: 48,
+    previousPage: [PageName.AddDriversLicenseName],
+    nextPage: [PageName.AddAddress]
   }, 
-  [PageName.Address]: {
-    href: '/register/address',
-    progressValue: 70,
-    previousPage: [PageName.DateOfBirth],
-    nextPage: [PageName.Confirm]
+  [PageName.AddAddress]: {
+    href: '/register/AddAddress',
+    progressValue: 56,
+    previousPage: [PageName.AddDateOfBirth],
+    nextPage: [PageName.ConfirmIdData]
   }, 
-  [PageName.Confirm]: {
+  [PageName.ConfirmIdData]: {
     href: '/register/confirm',
-    progressValue: 70,
-    previousPage: [PageName.Address],
+    progressValue: 64,
+    previousPage: [PageName.AddAddress],
+    nextPage: [PageName.AddBank]
+  }, 
+  [PageName.AddBank]: {
+    href: '/bank/add',
+    progressValue: 72,
+    previousPage: [PageName.ConfirmIdData],
+    nextPage: [PageName.SelectBankAccount]
+  }, 
+  [PageName.SelectBankAccount]: {
+    href: '/bank/select-account',
+    progressValue: 80,
+    previousPage:  [PageName.AddBank],
+    nextPage: [PageName.AddDirectDebit]
+  }, 
+  [PageName.AddDirectDebit]: {
+    href: '/bank/direct-debit',
+    progressValue: 88,
+    previousPage:  [PageName.SelectBankAccount],
+    nextPage: [PageName.TermsAndConditions]
+  }, 
+  [PageName.TermsAndConditions]: {
+    href: '/bank/direct-debit',
+    progressValue: 96,
+    previousPage:  [PageName.SelectBankAccount],
+    nextPage: [PageName.PaymentConfirmationPostSignUp]
+  }, 
+  [PageName.PaymentConfirmationPostSignUp]: {
+    href: '/payment/confirm-post-sign-up',
+    progressValue: 100,
+    previousPage:  null,
+    nextPage: [PageName.PaymentSuccess]
+  }, 
+  [PageName.PaymentSuccess]: {
+    href: '/payment/success',
+    progressValue: 100,
+    previousPage:  null,
     nextPage: null
   }, 
 }
 
-
 export const getNextPageLink = (nextPageName: PageName) =>   registrationFlow[nextPageName].href
+export const getPreviousPageLink = (previousPageName: PageName) =>   registrationFlow[previousPageName].href

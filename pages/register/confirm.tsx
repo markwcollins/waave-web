@@ -12,7 +12,7 @@ import { registrationFlow, PageName } from '@/config/flow'
 import FormSubmitButton from '@/components/FormNextButton'
 
 export default function Page() {
-  const pageDetails = registrationFlow[PageName.Confirm]
+  const pageDetails = registrationFlow[PageName.ConfirmIdData]
   
   return (
     <PageWrapper
@@ -32,7 +32,7 @@ export default function Page() {
       />
       <Divider my={3}/>
       <ConfirmBox 
-        name='Current Address'
+        name='Current AddAddress'
         value='123 Smith Street, Collingwood, Victoria, 2015, Australia'
         onClick={() => console.log('clicked')}
       />

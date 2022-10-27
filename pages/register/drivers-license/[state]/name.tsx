@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
 
-import { registrationFlow, PageName, getNextPageLink } from '@/config/flow'
+import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 
 import PageWrapper from '@/components/PageWrapper'
 import FormSubmitButton from '@/components/FormNextButton'
@@ -30,13 +30,14 @@ const initialValues: IEmailDriverLicenseName = {
 
 export default function Page() {
   const router = useRouter()
-  const pageDetails = registrationFlow[PageName.DriversLicenseName]
+  const pageDetails = registrationFlow[PageName.AddDriversLicenseName]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
   
   return (
     <PageWrapper
       heading='Your name'
-      backRoute={pageDetails.previousPage[0]}
+      backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}
       >
       <Formik

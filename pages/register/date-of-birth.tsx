@@ -12,19 +12,20 @@ import {
 import { Formik, Form, Field } from 'formik';
 import PageWrapper from '@/components/PageWrapper';
 
-import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
+import { getNextPageLink, getPreviousPageLink, PageName, registrationFlow } from "@/config/flow"
 import FormSubmitButton from '../../components/FormNextButton';
 
 export default function Page() {
   const router = useRouter()
-  const pageDetails = registrationFlow[PageName.DateOfBirth]
+  const pageDetails = registrationFlow[PageName.AddDateOfBirth]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
-  console.log(nextPageLink)
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
+
   return (
     <PageWrapper
       heading='Your Date of Birth'
       progressValue={pageDetails.progressValue}
-      backRoute={pageDetails.previousPage[0]}
+      backRoute={previousPageLink}
       >
       <Formik
           initialValues={{

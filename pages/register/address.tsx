@@ -11,19 +11,20 @@ import {
 import { useFormik, Formik, Form, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
 import { useRouter } from 'next/router'
-import { registrationFlow, PageName, getNextPageLink } from '@/config/flow'
+import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 import { states } from '@/config/states'
 
 export default function Page() {
   const router = useRouter()
-  const pageDetails = registrationFlow[PageName.Address]
+  const pageDetails = registrationFlow[PageName.AddAddress]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
   
   return (
     <PageWrapper
-      heading='Your current residential address'
+      heading='Your current residential AddAddress'
       progressValue={pageDetails.progressValue}
-      backRoute={pageDetails.previousPage[0]}
+      backRoute={previousPageLink}
       >
       <Formik
           initialValues={{

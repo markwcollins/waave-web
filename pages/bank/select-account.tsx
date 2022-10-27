@@ -1,46 +1,45 @@
+import { getPreviousPageLink, PageName, registrationFlow } from '@/config/flow'
+import PageWrapper from '@/components/PageWrapper'
 import Link from 'next/link'
 import { ChevronRightIcon} from '@chakra-ui/icons'
-import { FaRegAddressCard, FaPassport } from 'react-icons/fa'
 import { Text, Box, HStack, Spacer, VStack } from '@chakra-ui/react'
-import { registrationFlow, PageName } from '@/config/flow'
-
-import PageWrapper from '@/components/PageWrapper'
 
 export default function Page() {
-  const pageDetails = registrationFlow[PageName.ChooseId]
-
+  const pageDetails = registrationFlow[PageName.SelectBankAccount]
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
+  
   return (
     <PageWrapper
-      heading='Choose your ID'
-      subText='We need at least one of the following documents to verify your ID'
-      progressValue={pageDetails.progressValue}
-      >
+      heading='Select the bank account to make this payment'
+      backRoute={previousPageLink}
+      progressValue={pageDetails.progressValue}>
       <VStack spacing={4}>
-        <IDButton
-          text='Drivers License'
-          onClickLink={'/register/drivers-license'}
-          icon={<FaRegAddressCard size={28}/>} />
-        <IDButton
-          text='Passport'
-          onClickLink={'/register/passport'}
-          icon={<FaPassport size={28}/>} />
+        <BankAccountButton
+          text='ACME Account'
+          balance='$5000'
+          onClickLink={'/register/drivers-license'}/>
+        <BankAccountButton
+          text='ABC Account'
+          balance='$5000'
+          onClickLink={'/register/passport'} />
       </VStack>
     </PageWrapper>
   )
 }
 
-const IDButton = ({ 
+
+const BankAccountButton = ({ 
   text, 
-  icon, 
+  balance,
   onClickLink 
 }: { 
   text:string, 
-  icon: React.ReactNode,
+  balance:string, 
   onClickLink: string
  }) => (
   <Box
     as='button'
-    height='60px'
+    height='75px'
     width='100%'
     lineHeight='1.2'
     transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
@@ -63,10 +62,10 @@ const IDButton = ({
   >
     <Link href={onClickLink}>
       <HStack>
-        <Box>
-          {icon}
-          </Box>
-        <Text>{text}</Text>
+        <VStack align='flex-start'>
+          <Text fontWeight='bold'>{text}</Text>
+          <Text>{balance} available</Text>
+        </VStack>
         <Spacer />
         <Box><ChevronRightIcon w={6} h={6}/></Box>
       </HStack>

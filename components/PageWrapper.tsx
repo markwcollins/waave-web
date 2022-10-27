@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 
-import {Box,Text, Heading, Progress, Container, IconButton, HStack } from '@chakra-ui/react'
+import { Button, Box,Text, Heading, Progress, Container, IconButton, HStack, Divider, Spacer } from '@chakra-ui/react'
 
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router';
@@ -14,14 +14,21 @@ export default function PageWrapper({
   backRoute
 }: {
   children: ReactNode,
-  heading: string,
+  heading?: string,
   subText?: string,
   progressValue?: number,
   backRoute?: string|null
 }) {
   const router = useRouter()
   return (
-    <Container maxW='450px' mt={10}>
+    <Container maxW='450px'>
+      <HStack mt={3} mb={3}>
+        <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
+        <Spacer/>
+        {/* <Text>Luxury Escapes Holiday:</Text> */}
+      </HStack>
+      
+      <Divider mb={8}/>
       <HStack h={5}>
         {backRoute ? 
           <IconButton 
@@ -33,7 +40,7 @@ export default function PageWrapper({
         {progressValue ? <Box w='100%' ><Progress size='sm' value={progressValue} /></Box> : null}
       </HStack>
       
-      <Heading fontSize='3xl' mt={4} mb={4}>{heading}</Heading>
+      {heading ? <Heading fontSize='3xl' mt={4} mb={4}>{heading}</Heading> : null }
       {subText ? <Text fontSize='md' mb={8}>{subText}</Text> : null}
       {children}
     </Container>

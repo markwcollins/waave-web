@@ -15,7 +15,7 @@ import { AustralianStateID, states } from '@/config/states'
 import PageWrapper from '@/components/PageWrapper'
 import FormSubmitButton from '@/components/FormNextButton'
 
-import { registrationFlow, PageName, getNextPageLink } from '@/config/flow'
+import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 
 interface IEmailDriverLicenseName {
   state: AustralianStateID|null,
@@ -31,13 +31,14 @@ export default function Page() {
   const router = useRouter()
   const { state } = router.query
 
-  const pageDetails = registrationFlow[PageName.DriversLicenseName]
+  const pageDetails = registrationFlow[PageName.AddDriversLicenseNumber]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
 
   return (
     <PageWrapper
       heading='Your drivers license details'
-      backRoute='/register/drivers-license'
+      backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}
       >
       <Formik
