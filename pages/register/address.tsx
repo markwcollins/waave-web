@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { Container, HStack, VStack } from '@chakra-ui/react'
 import {
+  HStack, 
+  VStack,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -8,17 +8,16 @@ import {
   Button,
   Select
 } from '@chakra-ui/react'
-import { useFormik, Formik, Form, Field } from 'formik';
-import PageWrapper from '@/components/PageWrapper';
-import { useRouter } from 'next/router';
-import { registrationFlow, PageName, getNextPageLink } from '@/config/flow';
-import { states } from '../../config/states';
+import { useFormik, Formik, Form, Field } from 'formik'
+import PageWrapper from '@/components/PageWrapper'
+import { useRouter } from 'next/router'
+import { registrationFlow, PageName, getNextPageLink } from '@/config/flow'
+import { states } from '@/config/states'
 
 export default function Page() {
   const router = useRouter()
   const pageDetails = registrationFlow[PageName.Address]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
-  console.log(nextPageLink)
   
   return (
     <PageWrapper

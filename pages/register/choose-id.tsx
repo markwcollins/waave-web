@@ -1,16 +1,19 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import { ChevronRightIcon} from '@chakra-ui/icons'
 import { FaRegAddressCard, FaPassport } from 'react-icons/fa'
 import { Text, Box, HStack, Spacer, VStack } from '@chakra-ui/react'
+import { registrationFlow, PageName, getNextPageLink } from '@/config/flow';
 
 import PageWrapper from '@/components/PageWrapper'
 
 export default function Page() {
+  const pageDetails = registrationFlow[PageName.Confirm]
+
   return (
     <PageWrapper
       heading='Choose your ID'
       subText='We need at least one of the following documents to verify your ID'
-      progressValue={10}
+      progressValue={pageDetails.progressValue}
       >
       <VStack spacing={4}>
         <IDButton

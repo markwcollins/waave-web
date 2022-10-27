@@ -1,23 +1,18 @@
-import Link from 'next/link';
-import { Container, Divider, HStack, VStack } from '@chakra-ui/react'
 import {
   Text,
   Flex,
   Box,
   Spacer,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Divider
 } from '@chakra-ui/react'
-import { useFormik, Formik, Form, Field } from 'formik';
-import PageWrapper from '@/components/PageWrapper';
-import { useRouter } from 'next/router';
-import { registrationFlow, PageName, getNextPageLink } from '@/config/flow';
-import { states } from '../../config/states';
+import PageWrapper from '@/components/PageWrapper'
+import { registrationFlow, PageName } from '@/config/flow'
+import FormSubmitButton from '@/components/FormNextButton'
 
 export default function Page() {
-  const router = useRouter()
   const pageDetails = registrationFlow[PageName.Confirm]
-  // const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   
   return (
     <PageWrapper
@@ -48,9 +43,7 @@ export default function Page() {
         onClick={() => console.log('clicked')}
       />
       <Divider my={3}/>
-       <Button>
-          Next
-        </Button>
+       <FormSubmitButton />
     </PageWrapper>
   )
 }

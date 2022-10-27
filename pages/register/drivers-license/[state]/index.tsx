@@ -11,25 +11,39 @@ import {
   Select
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
-import { states } from '@/config/states'
+import { AustralianStateID, states } from '@/config/states'
 import PageWrapper from '@/components/PageWrapper'
+import FormSubmitButton from '@/components/FormNextButton'
+
+import { registrationFlow, PageName, getNextPageLink } from '@/config/flow'
+
+interface IEmailDriverLicenseName {
+  state: AustralianStateID|null,
+  licenseNumber: string
+}
+
+const initialValues: IEmailDriverLicenseName = {
+  state: null,
+  licenseNumber: '',
+}
 
 export default function Page() {
   const router = useRouter()
   const { state } = router.query
 
+  const pageDetails = registrationFlow[PageName.DriversLicenseName]
+  const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+
   return (
     <PageWrapper
       heading='Your drivers license details'
       backRoute='/register/drivers-license'
-      progressValue={10}
+      progressValue={pageDetails.progressValue}
       >
       <Formik
-          initialValues={{
-            licenseNumber: '',
-          }}
+          initialValues={{ ...initialValues, state }}
           onSubmit={(values) => {
-            router.push('/register/drivers-license/nsw/details')
+            router.push(nextPageLink)
           }}
         >
         {({ handleSubmit, errors, touched }) => (
@@ -63,9 +77,7 @@ export default function Page() {
                 <FormErrorMessage>{errors.licenseNumber}</FormErrorMessage>
               </FormControl>
               <Image height={100} width={450}  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
-              <Button type='submit'>
-                Next
-              </Button>
+              <FormSubmitButton prerenderLink={nextPageLink} />
             </VStack>
           </form>
         )}

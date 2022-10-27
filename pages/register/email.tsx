@@ -1,18 +1,24 @@
-import Link from 'next/link';
-import { Container, VStack, VisuallyHidden} from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+  VStack,
   Input,
-  Button,
-  Checkbox
 } from '@chakra-ui/react'
-import { useFormik, Formik, Form, Field } from 'formik';
-import PageWrapper from '@/components/PageWrapper';
-import { useRouter } from 'next/router';
+import { Formik, Field } from 'formik'
+import PageWrapper from '@/components/PageWrapper'
+import FormikObserver from '@/components/FormikObserver'
+import FormSubmitButton from '@/components/FormNextButton'
+
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
+
+interface IEmailForm {
+  email: string
+}
+
+const initialValues: IEmailForm = {
+  email: '',
+}
 
 export default function Page() {
   const router = useRouter()
@@ -22,12 +28,10 @@ export default function Page() {
   return (
     <PageWrapper
       heading='Lets start with your email'
-      progressValue={10}
+      progressValue={pageDetails.progressValue}
       >
       <Formik
-          initialValues={{
-            email: '',
-          }}
+          initialValues={initialValues}
           onSubmit={(values) => {
             router.push(nextPageLink)
           }}
@@ -35,6 +39,7 @@ export default function Page() {
         {({ handleSubmit, errors, touched }) => (
           <form onSubmit={handleSubmit}>
             <VStack spacing={4} align='flex-start'>
+              <FormikObserver<IEmailForm> onChange={(values) => console.log(values)} />
               <FormControl>
                 <FormLabel htmlFor='email'>Email Address</FormLabel>
                 <Field
@@ -44,14 +49,12 @@ export default function Page() {
                   type='email'
                 />
               </FormControl>
-              <Button type='submit'>
-                Next
-              </Button>
+              <FormSubmitButton prerenderLink={nextPageLink} />
             </VStack>
           </form>
         )}
       </Formik>
-      <Link hidden href={nextPageLink}/> 
     </PageWrapper>
   )
 }
+

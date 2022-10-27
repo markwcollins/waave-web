@@ -13,6 +13,7 @@ import { Formik, Form, Field } from 'formik';
 import PageWrapper from '@/components/PageWrapper';
 
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
+import FormSubmitButton from '../../components/FormNextButton';
 
 export default function Page() {
   const router = useRouter()
@@ -22,7 +23,7 @@ export default function Page() {
   return (
     <PageWrapper
       heading='Your Date of Birth'
-      progressValue={10}
+      progressValue={pageDetails.progressValue}
       backRoute={pageDetails.previousPage[0]}
       >
       <Formik
@@ -85,15 +86,12 @@ export default function Page() {
             </FormControl>
             </HStack>
 
-            <Text mt={4}>Your birthday is 22nd November 1984</Text>
+            <Text my={4}>Your birthday is 22nd November 1984</Text>
 
-            <Button type='submit' mt={4}>
-              Next
-            </Button>
+            <FormSubmitButton prerenderLink={nextPageLink} />
           </Form>
         )}
       </Formik>
-       <Link hidden href={nextPageLink}/> 
     </PageWrapper>
   )
 }

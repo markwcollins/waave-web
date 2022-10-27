@@ -28,37 +28,37 @@ export const registrationFlow = {
   },
   [PageName.ChooseId]: {
     href: '/register/choose-id',
-    progressValue: 10,
+    progressValue: 20,
     previousPage: [PageName.Email],
     nextPage: [PageName.DriversLicenseChooseState]
   },
   [PageName.DriversLicenseChooseState]: {
     href: '/register/drivers-license',
-    progressValue: 10,
+    progressValue: 30,
     previousPage: [PageName.ChooseId],
     nextPage: [PageName.DriversLicenseNumber]
   },
   [PageName.DriversLicenseNumber]: {
     href: '/register/drivers-license/[state]',
-    progressValue: 10,
+    progressValue: 40,
     previousPage: [PageName.DriversLicenseChooseState],
     nextPage: [PageName.DriversLicenseName]
   },
   [PageName.DriversLicenseName]: {
     href: '/register/drivers-license/[state]/name',
-    progressValue: 10,
+    progressValue: 50,
     previousPage: [PageName.DriversLicenseNumber],
     nextPage: [PageName.DateOfBirth]
   },
   [PageName.DateOfBirth]: {
     href: '/register/date-of-birth',
-    progressValue: 10,
+    progressValue: 60,
     previousPage: [PageName.DriversLicenseName],
     nextPage: [PageName.Address]
   }, 
   [PageName.Address]: {
     href: '/register/address',
-    progressValue: 10,
+    progressValue: 70,
     previousPage: [PageName.DateOfBirth],
     nextPage: [PageName.Confirm]
   }, 
