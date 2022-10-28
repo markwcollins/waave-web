@@ -19,6 +19,7 @@ import FormSubmitButton from '@/components/FormSubmitButton'
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 import { useState } from 'react'
 import { IEmailDriverLicenseName } from '@/types'
+import { getCustomerIdFromRouter, getStateRouter, useUpdateApplication } from '@/utils/state'
 
 const initialValues: IEmailDriverLicenseName = {
   state: undefined,
@@ -28,11 +29,14 @@ const initialValues: IEmailDriverLicenseName = {
 
 export default function Page() {
   const router = useRouter()
-  const { state } = router.query
+  const customerId = getCustomerIdFromRouter(router)
+  const state = getStateRouter(router) as AustralianStateID
   const [ isLoading, setIsLoading ] = useState(false)
   const pageDetails = registrationFlow[PageName.AddDriversLicenseNumber]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0]).replace('[state]', 'nsw')
   const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
+
+  const { update } = useUpdateApplication()
 
   return (
     <PageWrapper
@@ -43,11 +47,20 @@ export default function Page() {
       >
       <Formik
           initialValues={{ ...initialValues, state }}
-          onSubmit={(values) => {
-            setTimeout(()=>{
-              setIsLoading(true)
+          onSubmit={async (values) => {
+            setIsLoading(true)
+            try {
+              await update(customerId, { 
+                driversLicense: {
+                  state: values.state,
+                  licenseNumber: values.licenseNumber,
+                  cardNumber: values.cardNumber,
+                }
+              })
               router.push(nextPageLink)
-            }, 1000)
+            } catch {
+              alert('Error!')
+            }
           }}
         >
         {({ handleSubmit, errors, touched }) => (

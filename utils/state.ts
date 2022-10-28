@@ -1,6 +1,5 @@
+import { NextRouter } from "next/router"
 import { IRegistrationData } from "../types"
-
-import create from 'zustand'
 
 export const useInsertApplication = () => {
   const insert = async (): Promise<IRegistrationData> => {
@@ -11,7 +10,8 @@ export const useInsertApplication = () => {
 }
 
 export const useUpdateApplication = () => {
-  const update = async (id: string, data: Partial<IRegistrationData>): Promise<IRegistrationData> => {
+  const update = async (id: string|null, data: Partial<IRegistrationData>): Promise<IRegistrationData> => {
+    if (!id) throw 'Id missing'
     const res = await fetch('/api/application', { // note we are going to /1
       method: "PATCH",
       body: JSON.stringify(data)
@@ -19,4 +19,14 @@ export const useUpdateApplication = () => {
     return await res.json() as IRegistrationData
   } 
   return { update }
+}
+
+export const getCustomerIdFromRouter = (router: NextRouter): string|null => {
+  const { customerId } = router.query
+  return typeof customerId === 'string' ? customerId : null
+}
+
+export const getStateRouter = (router: NextRouter): string|null => {
+  const { state } = router.query
+  return typeof state === 'string' ? state : null
 }

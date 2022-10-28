@@ -15,18 +15,20 @@ import FormSubmitButton from '@/components/FormSubmitButton'
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
 import { useState } from 'react'
 import { IEmailForm } from '@/types'
-// import { useUpdateApplication } from '../../../../utils/state'
-
+import { getCustomerIdFromRouter, useUpdateApplication } from '@/utils/state'
+// 
 const initialValues: IEmailForm = {
   email: undefined,
 }
 
 export default function Page() {
   const router = useRouter()
+  const customerId = getCustomerIdFromRouter(router)
+  
   const [ isLoading, setIsLoading ] = useState(false)
   const pageDetails = registrationFlow[PageName.Email]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
-  // const { update } = useUpdateApplication()
+  const { update } = useUpdateApplication()
   
   return (
     <PageWrapper
@@ -39,7 +41,7 @@ export default function Page() {
           onSubmit={async (values) => {
             setIsLoading(true)
             try {
-              // await update('abc', {  email: values.email })
+              await update(customerId, {  email: values.email })
               router.push(nextPageLink)
             } catch {
               alert('Error!')
