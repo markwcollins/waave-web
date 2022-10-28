@@ -13,6 +13,7 @@ import PageWrapper from '@/components/PageWrapper'
 import { useRouter } from 'next/router'
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 import { states } from '@/config/states'
+import FormSubmitButton from '@/components/FormNextButton'
 
 export default function Page() {
   const router = useRouter()
@@ -108,9 +109,7 @@ export default function Page() {
                 <FormErrorMessage>{errors.streetSuburb}</FormErrorMessage>
               </FormControl>
 
-              <Button type='submit'>
-                Next
-              </Button>
+              <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>
         )}

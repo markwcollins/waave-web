@@ -10,7 +10,7 @@ import {
   Text,
   Flex,Box
 } from '@chakra-ui/react'
-import { Formik, Field, For } from 'formik'
+import { Formik, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
 import FormikObserver from '@/components/FormikObserver'
 import FormSubmitButton from '@/components/FormNextButton'
@@ -26,7 +26,6 @@ const initialValues: IDirectDebitForm = {
 }
 
 import { getNextPageLink, getPreviousPageLink, PageName, registrationFlow } from '@/config/flow'
-import NextButton from '@/components/NextButton'
 
 export default function Page() {
   const router = useRouter()
