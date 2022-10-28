@@ -11,22 +11,26 @@ export default function PageWrapper({
   heading,
   subText,
   progressValue,
-  backRoute
+  backRoute,
+  showBackToMerchant = false
 }: {
   children: ReactNode,
   heading?: string,
   subText?: string,
   progressValue?: number,
-  backRoute?: string|null
+  backRoute?: string|null,
+  showBackToMerchant?: boolean
 }) {
   const router = useRouter()
   return (
     <Container maxW='450px'>
-      <HStack mt={3} mb={3}>
-        <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
-        <Spacer/>
-        {/* <Text>Luxury Escapes Holiday:</Text> */}
-      </HStack>
+      {showBackToMerchant 
+        ? <HStack mt={3} mb={3}>
+            <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
+            <Spacer/>
+            {/* <Text>Luxury Escapes Holiday:</Text> */}
+          </HStack>
+        : null}
       
       <Divider mb={8}/>
       <HStack h={5}>

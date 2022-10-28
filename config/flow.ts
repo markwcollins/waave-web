@@ -1,6 +1,8 @@
 
 export enum PageName {
   Intro = 'intro',
+  EnterPhone = 'enter-phone',
+  EnterOTP = 'enter-otp',
   Email = 'email',
   ChooseId = 'choose-id',
   SelectDriversLicenseState = 'select-drivers-license-state',
@@ -19,9 +21,21 @@ export enum PageName {
 
 export const registrationFlow = {
   [PageName.Intro]: {
-    href: '/register',
+    href: '/intro',
     progressValue: 0,
     previousPage: null,
+    nextPage: [PageName.EnterPhone]
+  },
+  [PageName.EnterPhone]: {
+    href: '/phone',
+    progressValue: 0,
+    previousPage: [PageName.Intro],
+    nextPage: [PageName.EnterOTP]
+  },
+  [PageName.EnterOTP]: {
+    href: '/phone/otp',
+    progressValue: 0,
+    previousPage: [PageName.EnterPhone],
     nextPage: [PageName.Email]
   },
   [PageName.Email]: {
