@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 
-import { Highlight, Button, Box,Text, Heading, Progress, Container, IconButton, HStack, Divider, Spacer } from '@chakra-ui/react'
+import { Highlight, Center, Button, Box,Text, Heading, Progress, Container, IconButton, HStack, Divider, Spacer } from '@chakra-ui/react'
 
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ export default function PageWrapper({
   subText,
   progressValue,
   backRoute,
-  showBackToMerchant = false
+  showBackToMerchant = true
 }: {
   children: ReactNode,
   heading?: string,
@@ -29,12 +29,17 @@ export default function PageWrapper({
       {showBackToMerchant 
         ? <HStack mt={3} mb={3}>
             <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
-            <Spacer/>
-            {/* <Text>Luxury Escapes Holiday:</Text> */}
           </HStack>
         : null}
+
+      <Divider mt={1} mb={4}/>
+
+      {showBackToMerchant 
+        ? <Center  mb={4}>
+            <Text fontSize='sm'>Trip to Bali for 2 for $5,300</Text>
+          </Center>
+        : null}
       
-      <Divider mb={8}/>
       <HStack h={5}>
         {backRoute ? 
           <IconButton 
