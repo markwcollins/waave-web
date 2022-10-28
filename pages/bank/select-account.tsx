@@ -11,7 +11,8 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Select the bank account to make this payment'
+      heading='Select the bank account to use for this payment'
+      highlightText='use for this payment'
       backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}>
       <VStack spacing={4}>

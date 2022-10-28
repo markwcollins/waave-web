@@ -11,7 +11,8 @@ export default function Page() {
 
   return (
     <PageWrapper
-      heading='Choose your ID'
+      heading='Choose your ID document'
+      highlightText='ID document'
       subText='We need at least one of the following documents to verify your ID'
       progressValue={pageDetails.progressValue}
       >

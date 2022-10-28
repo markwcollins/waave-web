@@ -23,7 +23,8 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Your current residential AddAddress'
+      heading='Your current residential address'
+      highlightText='address'
       progressValue={pageDetails.progressValue}
       backRoute={previousPageLink}
       >

@@ -23,7 +23,8 @@ export default function Page() {
 
   return (
     <PageWrapper
-      heading='Your Date of Birth'
+      heading='Your date of birth'
+      highlightText='date of birth'
       progressValue={pageDetails.progressValue}
       backRoute={previousPageLink}
       >

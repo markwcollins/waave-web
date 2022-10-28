@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
+  FormHelperText,
   Input,
   Button,
   Image,
@@ -19,12 +20,14 @@ import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from
 
 interface IEmailDriverLicenseName {
   state: AustralianStateID|null,
-  licenseNumber: string
+  licenseNumber: string,
+  cardNumber: string
 }
 
 const initialValues: IEmailDriverLicenseName = {
   state: null,
   licenseNumber: '',
+  cardNumber: ''
 }
 
 export default function Page() {
@@ -38,6 +41,7 @@ export default function Page() {
   return (
     <PageWrapper
       heading='Your drivers license details'
+      highlightText='details'
       backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}
       >
@@ -60,6 +64,7 @@ export default function Page() {
               </FormControl>
               <FormControl isRequired>
                 <FormLabel htmlFor='licenseNumber'>License Number</FormLabel>
+                <FormHelperText mb={2}>Middle left of your license</FormHelperText>
                 <Field
                   as={Input}
                   id='licenseNumber'
@@ -75,9 +80,34 @@ export default function Page() {
                     return error;
                   }}
                 />
+                
                 <FormErrorMessage>{errors.licenseNumber}</FormErrorMessage>
               </FormControl>
               <Image width='100%'  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
+              
+              {state === AustralianStateID.NSW 
+              ? <FormControl isRequired>
+                <FormLabel htmlFor='cardNumber'>Card Number</FormLabel>
+                <FormHelperText mb={2}>Top right of your license</FormHelperText>
+                <Field
+                  as={Input}
+                  id='cardNumber'
+                  name='cardNumber'
+                  type='cardNumber'
+                  validate={(value: string) => {
+                    let error;
+
+                    // if (check per state) {
+                    //   error = 'Password must contain at least 6 characters';
+                    // }
+
+                    return error;
+                  }}
+                />
+                
+                <FormErrorMessage>{errors.cardNumber}</FormErrorMessage>
+              </FormControl> : null}
+              
               <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>

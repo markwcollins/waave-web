@@ -18,6 +18,7 @@ export default function Page() {
   return (
     <PageWrapper
       heading='Are these details correct?'
+      highlightText='correct'
       progressValue={pageDetails.progressValue}
       >
       <ConfirmBox 
@@ -60,7 +61,7 @@ const ConfirmBox = ({
 }) => (
   <Box>
   <Flex minWidth='max-content' alignItems='center' gap='2'>
-    <Text fontSize='sm' color='gray.400'>{name}</Text>
+    <Text fontSize='sm' color='gray.500'>{name}</Text>
       <Spacer />
       <ButtonGroup gap='2'>
         <Button onClick={onClick} size='sm' colorScheme='blue' variant='link'>Edit</Button>

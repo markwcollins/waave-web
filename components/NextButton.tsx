@@ -14,7 +14,7 @@ const NextButton = ({
 }) => {
   return (
     <Link href={href} >
-      <Button type='submit' colorScheme='linkedin' width='100%'>
+      <Button type='submit' colorScheme='brand' width='100%'>
         {text}
       </Button>
     </Link>

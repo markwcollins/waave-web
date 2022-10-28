@@ -8,10 +8,10 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Add Bank Account'
+      heading='Link your bank'
+      highlightText='bank'
       progressValue={pageDetails.progressValue}>
-        <p>Info about banking</p>
-        <p>Hand off to adatree</p>
+      <p>TBC.. contains info about adatree</p>
       <NextButton href={nextPageLink} />
     </PageWrapper>
   )

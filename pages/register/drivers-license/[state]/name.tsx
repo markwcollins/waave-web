@@ -37,7 +37,8 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Your name'
+      heading='Your name on your ID'
+      highlightText='name'
       backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}
       >

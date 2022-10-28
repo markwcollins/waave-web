@@ -35,7 +35,8 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Confirm Direct Debit'
+      heading='Confirm bank details for security'
+      highlightText='for security'
       backRoute={previousPageLink}
       progressValue={pageDetails.progressValue}>
         <Box mb={4}>
@@ -53,8 +54,8 @@ export default function Page() {
             <VStack spacing={4} align='flex-start'>
               <FormikObserver<IDirectDebitForm> onChange={(values) => console.log(values)} />
               <FormControl  isRequired isInvalid={!!errors.bsb && touched.bsb}>
-                <FormLabel htmlFor='bsb'>BSB</FormLabel>
-                <FormHelperText mb={2}>Type `302194` below to confirm</FormHelperText>
+                <FormLabel htmlFor='bsb'>Validate BSB</FormLabel>
+                <FormHelperText fontSize='md' mb={2}>Type `302194` below to confirm</FormHelperText>
                 <Field
                   as={Input}
                   id='bsb'
@@ -71,8 +72,8 @@ export default function Page() {
                 <FormErrorMessage>{errors.bsb}</FormErrorMessage>
               </FormControl>
               <FormControl  isRequired isInvalid={!!errors.accountNumber && touched.accountNumber}>
-                <FormLabel htmlFor='bsb'>Account Number</FormLabel>
-                <FormHelperText  mb={2}>Type `1245758` below to confirm</FormHelperText>
+                <FormLabel htmlFor='bsb'>Validate Account Number</FormLabel>
+                <FormHelperText  fontSize='md' mb={2}>Type `1245758` below to confirm</FormHelperText>
                 <Field
                   as={Input}
                   id='accountNumber'
