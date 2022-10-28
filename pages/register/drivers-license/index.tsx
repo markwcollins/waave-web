@@ -3,21 +3,27 @@ import { ChevronRightIcon} from '@chakra-ui/icons'
 import { Text, Box, HStack, Spacer, VStack } from '@chakra-ui/react'
 import PageWrapper from '@/components/PageWrapper'
 
+import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
+
 import { states } from '@/config/states'
 
 export default function Page() {
+  const pageDetails = registrationFlow[PageName.SelectDriversLicenseState]
+  const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
+
   return (
     <PageWrapper
       heading="What state was you driver's license issued"
       progressValue={20}
-      backRoute='/register/choose-id'
+      backRoute={previousPageLink}
       >
       <VStack spacing={4}>
         {states.map(state => (
           <StateButton 
             key={state.id}
             text={state.text}
-            onClickLink={state.href}
+            onClickLink={nextPageLink.replace('[state]', state.id)}
           />
         ))}
       </VStack>

@@ -75,7 +75,7 @@ export const registrationFlow = {
     nextPage: [PageName.AddAddress]
   }, 
   [PageName.AddAddress]: {
-    href: '/register/AddAddress',
+    href: '/register/address',
     progressValue: 56,
     previousPage: [PageName.AddDateOfBirth],
     nextPage: [PageName.ConfirmIdData]
@@ -105,7 +105,7 @@ export const registrationFlow = {
     nextPage: [PageName.TermsAndConditions]
   }, 
   [PageName.TermsAndConditions]: {
-    href: '/bank/direct-debit',
+    href: '/legal/terms',
     progressValue: 96,
     previousPage:  [PageName.SelectBankAccount],
     nextPage: [PageName.PaymentConfirmationPostSignUp]

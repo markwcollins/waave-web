@@ -1,21 +1,24 @@
+
+
+
+
 import { Button } from '@chakra-ui/react'
 import Link from 'next/link'
 
-const FormSubmitButton = ({ 
+const NextButton = ({ 
   text = 'Next',
   href 
 }: { 
   text?: string, 
-  href?: string
+  href: string
 }) => {
   return (
-    <>
+    <Link href={href} >
       <Button type='submit' width='100%'>
         {text}
       </Button>
-      {href ? <Link hidden href={href}/> : null}
-    </>
+    </Link>
   )
 };
 
-export default FormSubmitButton
+export default NextButton

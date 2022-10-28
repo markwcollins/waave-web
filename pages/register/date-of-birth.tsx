@@ -89,7 +89,7 @@ export default function Page() {
 
             <Text my={4}>Your birthday is 22nd November 1984</Text>
 
-            <FormSubmitButton prerenderLink={nextPageLink} />
+            <FormSubmitButton href={nextPageLink} />
           </Form>
         )}
       </Formik>

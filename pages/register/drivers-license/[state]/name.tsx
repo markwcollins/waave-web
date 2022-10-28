@@ -111,7 +111,7 @@ export default function Page() {
                 <FormErrorMessage>{errors.lastName}</FormErrorMessage>
               </FormControl>
               <Image height={100} width={450}  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
-              <FormSubmitButton prerenderLink={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>
         )}

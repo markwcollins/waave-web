@@ -32,7 +32,7 @@ export default function Page() {
   const { state } = router.query
 
   const pageDetails = registrationFlow[PageName.AddDriversLicenseNumber]
-  const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  const nextPageLink = getNextPageLink(pageDetails.nextPage[0]).replace('[state]', 'nsw')
   const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
 
   return (
@@ -78,7 +78,7 @@ export default function Page() {
                 <FormErrorMessage>{errors.licenseNumber}</FormErrorMessage>
               </FormControl>
               <Image height={100} width={450}  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
-              <FormSubmitButton prerenderLink={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>
         )}

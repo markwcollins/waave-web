@@ -7,17 +7,14 @@ export enum AustralianStateID {
 export const states = [
   {
     id: AustralianStateID.NSW,
-    text: 'NSW',
-    href: '/register/drivers-license/nsw'
+    text: 'NSW'
   },
   {
     id:  AustralianStateID.NSW,
-    text: 'Victoria',
-    href: '/register/drivers-license/victoria'
+    text: 'Victoria'
   },
   {
     id: AustralianStateID.Queensland,
-    text: 'Queensland',
-    href: '/register/drivers-license/queensland'
+    text: 'Queensland'
   }
 ]

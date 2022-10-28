@@ -1,4 +1,4 @@
-import { getPreviousPageLink, PageName, registrationFlow } from '@/config/flow'
+import { getPreviousPageLink, getNextPageLink, PageName, registrationFlow } from '@/config/flow'
 import PageWrapper from '@/components/PageWrapper'
 import Link from 'next/link'
 import { ChevronRightIcon} from '@chakra-ui/icons'
@@ -7,6 +7,7 @@ import { Text, Box, HStack, Spacer, VStack } from '@chakra-ui/react'
 export default function Page() {
   const pageDetails = registrationFlow[PageName.SelectBankAccount]
   const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
+  const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   
   return (
     <PageWrapper
@@ -17,11 +18,11 @@ export default function Page() {
         <BankAccountButton
           text='ACME Account'
           balance='$5000'
-          onClickLink={'/register/drivers-license'}/>
+          onClickLink={nextPageLink}/>
         <BankAccountButton
           text='ABC Account'
           balance='$5000'
-          onClickLink={'/register/passport'} />
+          onClickLink={nextPageLink} />
       </VStack>
     </PageWrapper>
   )

@@ -49,7 +49,7 @@ export default function Page() {
                   type='email'
                 />
               </FormControl>
-              <FormSubmitButton prerenderLink={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>
         )}

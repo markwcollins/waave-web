@@ -1,7 +1,6 @@
 import { getNextPageLink, PageName, registrationFlow } from '@/config/flow'
 import PageWrapper from '@/components/PageWrapper'
-import Link from 'next/link'
-import { Button } from '@chakra-ui/react'
+import NextButton from '@/components/NextButton'
 
 export default function Page() {
   const pageDetails = registrationFlow[PageName.AddBank]
@@ -11,11 +10,9 @@ export default function Page() {
     <PageWrapper
       heading='Add Bank Account'
       progressValue={pageDetails.progressValue}>
-      <Link href={nextPageLink} >
-        <Button type='submit' width='100%'>
-          Next
-        </Button>
-      </Link>
+        <p>Info about banking</p>
+        <p>Hand off to adatree</p>
+      <NextButton href={nextPageLink} />
     </PageWrapper>
   )
 }

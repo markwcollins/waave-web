@@ -8,11 +8,12 @@ import {
   Divider
 } from '@chakra-ui/react'
 import PageWrapper from '@/components/PageWrapper'
-import { registrationFlow, PageName } from '@/config/flow'
-import FormSubmitButton from '@/components/FormNextButton'
+import { getNextPageLink, registrationFlow, PageName } from '@/config/flow'
+import NextButton from '@/components/NextButton'
 
 export default function Page() {
   const pageDetails = registrationFlow[PageName.ConfirmIdData]
+  const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   
   return (
     <PageWrapper
@@ -43,7 +44,7 @@ export default function Page() {
         onClick={() => console.log('clicked')}
       />
       <Divider my={3}/>
-       <FormSubmitButton />
+      <NextButton href={nextPageLink}/>
     </PageWrapper>
   )
 }
