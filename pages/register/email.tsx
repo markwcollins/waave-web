@@ -4,7 +4,8 @@ import {
   FormLabel,
   VStack,
   Input,
-  FormErrorMessage
+  FormErrorMessage,
+  Text
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
@@ -29,6 +30,7 @@ export default function Page() {
   return (
     <PageWrapper
       heading='Lets start with your email'
+      highlightText='email'
       progressValue={pageDetails.progressValue}
       >
       <Formik

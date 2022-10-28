@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 
-import { Button, Box,Text, Heading, Progress, Container, IconButton, HStack, Divider, Spacer } from '@chakra-ui/react'
+import { Highlight, Button, Box,Text, Heading, Progress, Container, IconButton, HStack, Divider, Spacer } from '@chakra-ui/react'
 
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 export default function PageWrapper({ 
   children, 
   heading,
+  highlightText,
   subText,
   progressValue,
   backRoute,
@@ -16,6 +17,7 @@ export default function PageWrapper({
 }: {
   children: ReactNode,
   heading?: string,
+  highlightText?: string,
   subText?: string,
   progressValue?: number,
   backRoute?: string|null,
@@ -41,10 +43,26 @@ export default function PageWrapper({
             onClick={() => router.push(backRoute)}
             variant='link' aria-label='Search database' icon={<ChevronLeftIcon  w={6} h={6}/>} /> 
           : null}
-        {progressValue ? <Box w='100%' ><Progress size='sm' value={progressValue} /></Box> : null}
+        {progressValue ? <Box w='100%' ><Progress colorScheme='brand' size='sm' value={progressValue} /></Box> : null}
       </HStack>
       
-      {heading ? <Heading fontSize='3xl' mt={4} mb={4}>{heading}</Heading> : null }
+
+      {heading ?
+        // ? <Heading fontSize='3xl' mt={4} mb={4}>
+        //     {heading} 
+        //     {highlightText ? <Text colorScheme='brand' as='span'>{` `}{highlightText}</Text> :null}
+        //   </Heading>
+          <Heading fontSize='3xl' mt={4} mb={4}>
+            {highlightText
+            ? <Highlight
+                query={highlightText}
+                styles={{ color: 'brand.800' }}
+                >
+                {heading} 
+              </Highlight>
+            : heading }
+           </Heading> 
+        : null }
       {subText ? <Text fontSize='md' mb={8}>{subText}</Text> : null}
       {children}
     </Container>

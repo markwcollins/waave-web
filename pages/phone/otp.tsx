@@ -12,7 +12,7 @@ export default function Page() {
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   
   return (
-    <PageWrapper heading='Enter your phone number'>
+    <PageWrapper heading='Enter your code' highlightText='code'>
       <TwoFactorVerificationForm onSubmit={() => router.push(nextPageLink)}/>
     </PageWrapper>
   )

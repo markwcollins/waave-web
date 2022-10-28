@@ -10,13 +10,6 @@ import {
 import PageWrapper from '@/components/PageWrapper'
 import FormSubmitButton from '@/components/FormNextButton'
 
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react'
 
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
 import { Router, useRouter } from 'next/router'
@@ -33,11 +26,12 @@ export default function Page() {
   const router = useRouter()
   const pageDetails = registrationFlow[PageName.EnterPhone]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
-  const [phoneNumber, setPhoneNumber] = useState<any>()
+  // const [phoneNumber, setPhoneNumber] = useState<any>()
   
   return (
     <PageWrapper
       heading='Enter your mobile number'
+      highlightText='mobile number'
       subText='We will send you an code to confirm the number'
       >
         

@@ -10,7 +10,7 @@ const FormSubmitButton = ({
 }) => {
   return (
     <>
-      <Button type='submit' width='100%'>
+      <Button type='submit' colorScheme='brand' width='100%'>
         {text}
       </Button>
       {href ? <Link hidden href={href}/> : null}
