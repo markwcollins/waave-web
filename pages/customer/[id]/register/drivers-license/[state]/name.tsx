@@ -15,7 +15,7 @@ import { Formik, Field } from 'formik'
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 
 import PageWrapper from '@/components/PageWrapper'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 interface IEmailDriverLicenseName {
   firstName: string,

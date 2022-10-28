@@ -19,11 +19,11 @@ export default function Page() {
       <VStack spacing={4}>
         <IDButton
           text='Drivers License'
-          onClickLink={'/register/drivers-license'}
+          onClickLink={'/customer/123/register/drivers-license'}
           icon={<FaRegAddressCard size={28}/>} />
         <IDButton
           text='Passport'
-          onClickLink={'/register/passport'}
+          onClickLink={'/customer/123/register/passport'}
           icon={<FaPassport size={28}/>} />
       </VStack>
     </PageWrapper>

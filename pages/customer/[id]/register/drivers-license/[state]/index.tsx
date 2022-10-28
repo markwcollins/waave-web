@@ -14,26 +14,22 @@ import {
 import { Formik, Field } from 'formik'
 import { AustralianStateID, states } from '@/config/states'
 import PageWrapper from '@/components/PageWrapper'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
-
-interface IEmailDriverLicenseName {
-  state: AustralianStateID|null,
-  licenseNumber: string,
-  cardNumber: string
-}
+import { useState } from 'react'
+import { IEmailDriverLicenseName } from '@/types'
 
 const initialValues: IEmailDriverLicenseName = {
-  state: null,
-  licenseNumber: '',
-  cardNumber: ''
+  state: undefined,
+  licenseNumber: undefined,
+  cardNumber: undefined
 }
 
 export default function Page() {
   const router = useRouter()
   const { state } = router.query
-
+  const [ isLoading, setIsLoading ] = useState(false)
   const pageDetails = registrationFlow[PageName.AddDriversLicenseNumber]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0]).replace('[state]', 'nsw')
   const previousPageLink = getPreviousPageLink(pageDetails.previousPage[0])
@@ -48,7 +44,10 @@ export default function Page() {
       <Formik
           initialValues={{ ...initialValues, state }}
           onSubmit={(values) => {
-            router.push(nextPageLink)
+            setTimeout(()=>{
+              setIsLoading(true)
+              router.push(nextPageLink)
+            }, 1000)
           }}
         >
         {({ handleSubmit, errors, touched }) => (
@@ -108,7 +107,7 @@ export default function Page() {
                 <FormErrorMessage>{errors.cardNumber}</FormErrorMessage>
               </FormControl> : null}
               
-              <FormSubmitButton href={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} isLoading={isLoading}/>
             </VStack>
           </form>
         )}

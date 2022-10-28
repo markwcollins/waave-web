@@ -3,17 +3,20 @@ import Link from 'next/link'
 
 const FormSubmitButton = ({ 
   text = 'Next',
+  isLoading = false,
   href 
 }: { 
   text?: string, 
+  isLoading?: boolean
   href?: string
 }) => {
   return (
     <>
-      <Button type='submit' colorScheme='brand' width='100%'>
+      <Button type='submit' isLoading={isLoading} colorScheme='brand' width='100%'>
         {text}
       </Button>
       {href ? <Link hidden href={href}/> : null}
+      {/* for prefetch */}
     </>
   )
 };

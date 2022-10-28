@@ -13,16 +13,16 @@ import {
 import { Formik, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
 import FormikObserver from '@/components/FormikObserver'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 interface IDirectDebitForm {
-  bsb: number|null
-  accountNumber: number|null
+  bsb?: number
+  accountNumber?: number
 }
 
 const initialValues: IDirectDebitForm = {
-  bsb: null,
-  accountNumber: null
+  bsb: undefined,
+  accountNumber: undefined
 }
 
 import { getNextPageLink, getPreviousPageLink, PageName, registrationFlow } from '@/config/flow'

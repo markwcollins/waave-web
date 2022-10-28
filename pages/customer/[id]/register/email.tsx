@@ -10,22 +10,23 @@ import {
 import { Formik, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
 import FormikObserver from '@/components/FormikObserver'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
-
-interface IEmailForm {
-  email: string
-}
+import { useState } from 'react'
+import { IEmailForm } from '@/types'
+// import { useUpdateApplication } from '../../../../utils/state'
 
 const initialValues: IEmailForm = {
-  email: '',
+  email: undefined,
 }
 
 export default function Page() {
   const router = useRouter()
+  const [ isLoading, setIsLoading ] = useState(false)
   const pageDetails = registrationFlow[PageName.Email]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
+  // const { update } = useUpdateApplication()
   
   return (
     <PageWrapper
@@ -35,8 +36,14 @@ export default function Page() {
       >
       <Formik
           initialValues={initialValues}
-          onSubmit={(values) => {
-            router.push(nextPageLink)
+          onSubmit={async (values) => {
+            setIsLoading(true)
+            try {
+              // await update('abc', {  email: values.email })
+              router.push(nextPageLink)
+            } catch {
+              alert('Error!')
+            }
           }}
         >
         {({ handleSubmit, errors, touched }) => (
@@ -53,7 +60,7 @@ export default function Page() {
                 />
                 <FormErrorMessage>{errors.email}</FormErrorMessage>
               </FormControl>
-              <FormSubmitButton href={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} isLoading={isLoading}/>
             </VStack>
           </form>
         )}

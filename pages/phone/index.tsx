@@ -8,25 +8,24 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import PageWrapper from '@/components/PageWrapper'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 
 import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
 import { Router, useRouter } from 'next/router'
+import { useInsertApplication } from '../../utils/state'
+import { IPhoneForm } from '../../types'
 
-interface IPhoneForm {
-  phone: string
-}
 
 const initialValues: IPhoneForm = {
-  phone: '',
+  phone: undefined,
 }
 
 export default function Page() {
   const router = useRouter()
   const pageDetails = registrationFlow[PageName.EnterPhone]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
-  // const [phoneNumber, setPhoneNumber] = useState<any>()
+  const { insert } = useInsertApplication()
   
   return (
     <PageWrapper
@@ -53,8 +52,13 @@ export default function Page() {
             } 
             return errors
           }}
-          onSubmit={(values, actions) => {
-            router.push(nextPageLink)
+          onSubmit={ async (values, actions) => {
+            try {
+              await insert()
+              router.push(nextPageLink)
+            } catch {
+              alert('Error!')
+            }
           }}
           >
           {({ handleSubmit, errors, touched, values, handleChange }) => (

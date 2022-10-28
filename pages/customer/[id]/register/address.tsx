@@ -13,7 +13,7 @@ import PageWrapper from '@/components/PageWrapper'
 import { useRouter } from 'next/router'
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 import { states } from '@/config/states'
-import FormSubmitButton from '@/components/FormNextButton'
+import FormSubmitButton from '@/components/FormSubmitButton'
 
 export default function Page() {
   const router = useRouter()
@@ -30,12 +30,12 @@ export default function Page() {
       >
       <Formik
           initialValues={{
-            unit: null,
-            streetNumber: null,
-            streetName: null,
-            streetSuburb: null,
-            state: null,
-            postCode: null
+            unit: undefined,
+            streetNumber: undefined,
+            streetName: undefined,
+            streetSuburb: undefined,
+            state: undefined,
+            postCode: undefined
           }}
           onSubmit={(values) => {
             router.push(nextPageLink)
