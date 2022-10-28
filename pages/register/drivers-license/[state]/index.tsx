@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import {
@@ -8,6 +7,7 @@ import {
   FormErrorMessage,
   Input,
   Button,
+  Image,
   Select
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
@@ -77,7 +77,7 @@ export default function Page() {
                 />
                 <FormErrorMessage>{errors.licenseNumber}</FormErrorMessage>
               </FormControl>
-              <Image height={100} width={450}  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
+              <Image width='100%'  src='/drivers-license-images/nsw.png' alt='nsw drivers license'/>
               <FormSubmitButton href={nextPageLink} />
             </VStack>
           </form>

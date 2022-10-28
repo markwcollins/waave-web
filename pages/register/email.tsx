@@ -4,6 +4,7 @@ import {
   FormLabel,
   VStack,
   Input,
+  FormErrorMessage
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
@@ -40,7 +41,7 @@ export default function Page() {
           <form onSubmit={handleSubmit}>
             <VStack spacing={4} align='flex-start'>
               <FormikObserver<IEmailForm> onChange={(values) => console.log(values)} />
-              <FormControl>
+              <FormControl  isRequired isInvalid={!!errors.email && touched.email}>
                 <FormLabel htmlFor='email'>Email Address</FormLabel>
                 <Field
                   as={Input}
@@ -48,6 +49,7 @@ export default function Page() {
                   name='email'
                   type='email'
                 />
+                <FormErrorMessage>{errors.email}</FormErrorMessage>
               </FormControl>
               <FormSubmitButton href={nextPageLink} />
             </VStack>
