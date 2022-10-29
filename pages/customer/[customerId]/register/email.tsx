@@ -32,7 +32,7 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading='Lets start with your email'
+      heading="Let's start with your email"
       highlightText='email'
       progressValue={pageDetails.progressValue}
       >

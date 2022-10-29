@@ -13,7 +13,8 @@ export default function PageWrapper({
   subText,
   progressValue,
   backRoute,
-  showBackToMerchant = true
+  hideBackToMerchant = false,
+  hideProduct = false
 }: {
   children: ReactNode,
   heading?: string,
@@ -21,12 +22,13 @@ export default function PageWrapper({
   subText?: string,
   progressValue?: number,
   backRoute?: string|null,
-  showBackToMerchant?: boolean
+  hideBackToMerchant?: boolean,
+  hideProduct?: boolean
 }) {
   const router = useRouter()
   return (
     <Container maxW='450px'>
-      {showBackToMerchant 
+      {!hideBackToMerchant 
         ? <HStack mt={3} mb={3}>
             <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
           </HStack>
@@ -34,13 +36,13 @@ export default function PageWrapper({
 
       <Divider mt={1} mb={4}/>
 
-      {showBackToMerchant 
+      {!hideProduct 
         ? <Center  mb={4}>
-            <Text fontSize='sm'>Trip to Bali for 2 for $5,300</Text>
+            <Text fontWeight='bold' fontSize='sm'>Trip to Bali for 2 for $5,300. Exciting!</Text>
           </Center>
         : null}
       
-      <HStack h={5}>
+      {backRoute ||progressValue ? <HStack h={5}>
         {backRoute ? 
           <IconButton 
             ml={-3} 
@@ -49,7 +51,7 @@ export default function PageWrapper({
             variant='link' aria-label='Search database' icon={<ChevronLeftIcon  w={6} h={6}/>} /> 
           : null}
         {progressValue ? <Box w='100%' ><Progress colorScheme='brand' size='sm' value={progressValue} /></Box> : null}
-      </HStack>
+      </HStack> : null}
       
 
       {heading ?

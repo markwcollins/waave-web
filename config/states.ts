@@ -10,7 +10,7 @@ export const states = [
     text: 'NSW'
   },
   {
-    id:  AustralianStateID.NSW,
+    id:  AustralianStateID.Victoria,
     text: 'Victoria'
   },
   {

@@ -123,7 +123,7 @@ export default function Page() {
             </FormControl>
             </HStack>
 
-            {dateFormatted ? <Text mb={4}>Your birthday is {dateFormatted}</Text> : null}
+            {dateFormatted ? <Text mb={4}>You were born on {dateFormatted}</Text> : null}
 
 
             <FormSubmitButton href={nextPageLink} isLoading={isLoading}/>

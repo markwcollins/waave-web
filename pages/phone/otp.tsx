@@ -12,7 +12,7 @@ export default function Page() {
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   
   return (
-    <PageWrapper heading='Enter your code' highlightText='code'>
+    <PageWrapper heading='Enter your code' highlightText='code' hideProduct>
       <TwoFactorVerificationForm onSubmit={() => router.push(nextPageLink)}/>
     </PageWrapper>
   )
@@ -30,7 +30,6 @@ const AutoSubmitToken = () => {
   // Grab values and submitForm from context
   const { values, submitForm } = useFormikContext<IToken>()
   React.useEffect(() => {
-    console.log(11, values.token.length)
     // Submit the form imperatively as an effect as soon as form values.token are 6 digits long
     if (values.token.length === 6) {
       submitForm()

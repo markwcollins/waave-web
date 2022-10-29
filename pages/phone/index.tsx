@@ -29,9 +29,9 @@ export default function Page() {
   
   return (
     <PageWrapper
-      showBackToMerchant
       heading='Enter your mobile number'
       highlightText='mobile number'
+      hideProduct
       subText='We will send you an code to confirm the number'
       >
         
