@@ -15,7 +15,7 @@ const FormSubmitButton = ({
       <Button type='submit' isLoading={isLoading} colorScheme='brand' width='100%'>
         {text}
       </Button>
-      {href ? <Link hidden href={href}/> : null}
+      {href ? <Link href={href}/> : null}
       {/* for prefetch */}
     </>
   )
