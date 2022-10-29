@@ -23,6 +23,7 @@ const initialValues: IPhoneForm = {
 
 export default function Page() {
   const router = useRouter()
+  const [ isLoading, setIsLoading ] = useState(false)
   const pageDetails = registrationFlow[PageName.EnterPhone]
   const nextPageLink = getNextPageLink(pageDetails.nextPage[0])
   const { insert } = useInsertApplication()
@@ -54,11 +55,13 @@ export default function Page() {
             return errors
           }}
           onSubmit={ async (values, actions) => {
+            setIsLoading(true)
             try {
               await insert()
               router.push(nextPageLink)
             } catch {
               alert('Error!')
+              setIsLoading(false)
             }
           }}
           >
@@ -79,7 +82,7 @@ export default function Page() {
                 </NumberInput> */}
                 <FormErrorMessage>{errors.phone}</FormErrorMessage>
               </FormControl>
-              <FormSubmitButton href={nextPageLink} />
+              <FormSubmitButton href={nextPageLink} isLoading={isLoading} />
             </VStack>
           </Form>
           )}    

@@ -27,7 +27,6 @@ const initialValues: IDateOfBirthForm = {
 
 export default function Page() {
   const router = useRouter()
-  const { customerId } = router.query
   const [ isLoading, setIsLoading ] = useState(false)
   const [ dateFormatted, setDateFormatted ] = useState<string>()
 
