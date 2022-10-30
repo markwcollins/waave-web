@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 
 import {
   VStack,
@@ -12,13 +13,13 @@ import {
   Select
 } from '@chakra-ui/react'
 import { Formik, Field } from 'formik'
-import { AustralianStateID, states } from '@/config/states'
+import { states } from '@/config/states'
 import PageWrapper from '@/components/PageWrapper'
 import FormSubmitButton from '@/components/FormSubmitButton'
 
 import { registrationFlow, PageName, getNextPageLink, getPreviousPageLink } from '@/config/flow'
 import { useState } from 'react'
-import { IEmailDriverLicenseName } from '@/types'
+import { AustralianStateID, IEmailDriverLicenseName } from '@/types'
 import { getCustomerIdFromRouter, getStateRouter, useUpdateApplication } from '@/utils/state'
 
 const initialValues: IEmailDriverLicenseName = {

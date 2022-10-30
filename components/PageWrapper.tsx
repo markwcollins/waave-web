@@ -38,7 +38,7 @@ export default function PageWrapper({
 
       {!hideProduct 
         ? <Center  mb={4}>
-            <Text fontWeight='bold' fontSize='sm'>Trip to Bali for 2 for $5,300. Exciting!</Text>
+            <Text fontWeight='bold' fontSize='sm'>You&apos;re buying a trip to Bali for $5,300. Exciting!</Text>
           </Center>
         : null}
       

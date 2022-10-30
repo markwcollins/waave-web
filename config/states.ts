@@ -1,10 +1,11 @@
-export enum AustralianStateID {
-  NSW = 'nsw',
-  Victoria = 'victoria',
-  Queensland = 'queensland'
+import { AustralianStateID } from "../types";
+
+export interface IState {
+  id: AustralianStateID
+  text: string
 }
 
-export const states = [
+export const states: IState[] = [
   {
     id: AustralianStateID.NSW,
     text: 'NSW'

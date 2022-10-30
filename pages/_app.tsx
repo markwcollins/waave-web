@@ -70,7 +70,7 @@ const Button = defineStyleConfig({
 })
 
 // 1. Import `extendTheme`
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from '@chakra-ui/react'
 
 // 2. Call `extendTheme` and pass your custom values
 const customTheme = extendTheme(withDefaultColorScheme({ colorScheme: 'brand' }))

@@ -12,7 +12,7 @@ import {
 import { Formik, Form, Field } from 'formik'
 import PageWrapper from '@/components/PageWrapper'
 
-import { getNextPageLink, getPreviousPageLink, PageName, registrationFlow } from "@/config/flow"
+import { getNextPageLink, getPreviousPageLink, PageName, registrationFlow } from '@/config/flow'
 import FormSubmitButton from '@/components/FormSubmitButton'
 import { useState } from 'react'
 import FormikObserver from '@/components/FormikObserver'
@@ -37,7 +37,7 @@ export default function Page() {
       const date = new Date(values.year, values.month, values.day)
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
       {/* @ts-ignore */}
-      const format = date.toLocaleDateString("en-AU", options)
+      const format = date.toLocaleDateString('en-AU', options)
       setDateFormatted(format)
     }
   }, [ setDateFormatted ])

@@ -1,9 +1,7 @@
-import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
-import { Center, Heading, Text, Button, VStack, Box, Container } from "@chakra-ui/react"
-import PageWrapper from "@/components/PageWrapper"
-import NextButton from "@/components/NextButton"
-import { ArrowDownIcon, ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons"
-import Link from "next/link"
+import { getNextPageLink, PageName, registrationFlow } from '@/config/flow'
+import { Center, Heading, Text, Button, Box, Container } from '@chakra-ui/react'
+import { ArrowDownIcon, ChevronLeftIcon } from '@chakra-ui/icons'
+import Link from 'next/link'
 
 export default function Page() {
   const pageDetails = registrationFlow[PageName.Intro]
@@ -50,7 +48,7 @@ export default function Page() {
         />
          <Step 
           heading='Pay'
-          text="Just pay. It's scecure and simple"
+          text='Just pay. It&apos;s scecure and simple'
           hideArrow
         />
 
@@ -77,6 +75,6 @@ const Step = ({
   <Box textAlign='center'>
     <Heading fontSize='5xl'>{heading}</Heading>
     <Text mt={2} fontSize='xl'>{text}</Text>
-    {!hideArrow ? <ArrowDownIcon color="brand.800" w={20} h={20} /> : null}
+    {!hideArrow ? <ArrowDownIcon color='brand.800' w={20} h={20} /> : null}
   </Box>
 )

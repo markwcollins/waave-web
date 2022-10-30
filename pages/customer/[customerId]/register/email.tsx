@@ -12,7 +12,7 @@ import PageWrapper from '@/components/PageWrapper'
 import FormikObserver from '@/components/FormikObserver'
 import FormSubmitButton from '@/components/FormSubmitButton'
 
-import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
+import { getNextPageLink, PageName, registrationFlow } from '@/config/flow'
 import { useState } from 'react'
 import { IEmailForm } from '@/types'
 import { getCustomerIdFromRouter, useUpdateApplication } from '@/utils/state'
@@ -32,7 +32,7 @@ export default function Page() {
   
   return (
     <PageWrapper
-      heading="Let's start with your email"
+      heading='Let&apos;s start with your email'
       highlightText='email'
       progressValue={pageDetails.progressValue}
       >

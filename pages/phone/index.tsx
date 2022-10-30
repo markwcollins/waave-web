@@ -1,20 +1,20 @@
-import Link from 'next/link'
-import { useState } from "react"
-import { useFormikContext, Formik, Form, Field } from 'formik'
-import { FormErrorMessage, FormControl } from '@chakra-ui/react'
+import { useState } from 'react'
+import { Formik, Form, Field } from 'formik'
+import { FormControl } from '@chakra-ui/react'
 import PhoneInput from 'react-phone-number-input/input'
 import {
   Input,
   VStack,
+  FormErrorMessage
 } from '@chakra-ui/react'
 import PageWrapper from '@/components/PageWrapper'
 import FormSubmitButton from '@/components/FormSubmitButton'
 
 
-import { getNextPageLink, PageName, registrationFlow } from "@/config/flow"
-import { Router, useRouter } from 'next/router'
-import { useInsertApplication } from '../../utils/state'
-import { IPhoneForm } from '../../types'
+import { getNextPageLink, PageName, registrationFlow } from '@/config/flow'
+import { useRouter } from 'next/router'
+import { useInsertApplication } from '@/utils/state'
+import { IPhoneForm } from '@/types'
 
 
 const initialValues: IPhoneForm = {
@@ -37,8 +37,8 @@ export default function Page() {
       >
         
         {/* <Input 
-          country="AU"
-          placeholder="Enter your phone number"
+          country='AU'
+          placeholder='Enter your phone number'
           value={phoneNumber}
           onChange={(value ) => setPhoneNumber(value)}
           as={PhoneInput}

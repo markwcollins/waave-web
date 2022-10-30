@@ -14,7 +14,7 @@ export default function Page() {
 
   return (
     <PageWrapper
-      heading="What state was you driver's license issued"
+      heading='What state was you driver&apos;s license issued'
       highlightText='state'
       progressValue={20}
       backRoute={previousPageLink}
