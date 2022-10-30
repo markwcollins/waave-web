@@ -27,9 +27,9 @@ export default function PageWrapper({
 }) {
   const router = useRouter()
   return (
-    <Container maxW='450px'>
+    <Container maxW='450px' pt={3}>
       {!hideBackToMerchant 
-        ? <HStack mt={3} mb={3}>
+        ? <HStack mb={3}>
             <Button variant='link' size='xs'>Back to Luxury Escapes</Button>
           </HStack>
         : null}
